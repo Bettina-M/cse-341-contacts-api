@@ -1,36 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const {dbConnect} = require('../database/database');
-const { ObjectId } = require('mongodb');
+const controller = require('../controller/contacts');
 
 //function for all contacts
-router.get("/", async(req, res) =>{
-    try{
-        const db = await dbConnect()
-
-        const contacts = await db.collection("contacts").find().toArray();
-
-        res.json(contacts);
-    }catch(error){
-        console.error(error)
-        res.status(500).json({error:"Failed to get contacts"})
-    }
-})
+router.get("/", controller.getall)
 
 //function for single contact by id
-router.get('/:id', async (req, res) =>{
-    try{
-        const db = await dbConnect();
+router.get('/:id',controller.getbyId)
 
-        const query = {_id: new ObjectId(req.params.id)}
+router.post('/', controller.addContact)
 
-        const contacts = await db.collection("contacts").findOne(query)
+router.put('/:id', controller.updateContact)
 
-        res.json(contacts)
-    }catch(error){
-        console.error(error)
-        res.status(500).json({message: error.message})
-    }
-})
+router.delete('/:id', controller.deleteContact)
 
 module.exports = router;

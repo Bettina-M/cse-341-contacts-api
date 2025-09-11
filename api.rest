@@ -1,3 +1,33 @@
+
+###Getting all contacts
 GET http://localhost:8080/contacts
 
+###Getting a single contact by ID
 GET http://localhost:8080/contacts/68b9d9ab583c7a7451378b02
+
+###Adding a new contact
+POST http://localhost:8080/contacts
+content-type: application/json
+
+{
+ "fname": "Maya",
+  "lname": "Lucher",
+  "email": "maya@example.com",
+  "favcolor": "blue",
+  "birthdate": "09-11-82"
+}
+
+###Updating a contact by ID
+PUT http://localhost:8080/contacts/68c3151c8ea09609d09a664d
+content-type: application/json
+
+{
+ "fname": "Maya",
+  "lname": "Lucher",
+  "email": "123@gmail.com",
+  "favcolor": "pink",
+  "birthdate": "09-11-82"
+}
+
+###Deleting a contact by ID
+DELETE http://localhost:8080/contacts/68c3169484b205b16db9a0b0
