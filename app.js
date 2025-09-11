@@ -1,12 +1,21 @@
 const express = require("express")
 const app = express()
 const port = 8080
-const routes = require('./routes/contacts')
+const contactRoutes = require('./routes/contacts')
 const bodyParser = require("body-parser")
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json')
+const cors = require('cors');
+
+app.use(cors());
 
 app.use(bodyParser.json())
+
 app.use(express.urlencoded({ extended: true }));
-app.use('/contacts', routes)
+
+app.use('/contacts', contactRoutes)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (req, res) =>{
     res.send('Hello World!');
