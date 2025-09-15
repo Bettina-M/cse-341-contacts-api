@@ -5,8 +5,8 @@ const doc = {
     title: 'Contacts API',
     description: 'API documentation for contacts service',
   },
-  host: 'localhost:8080',
-  schemes: ['http'],
+  host: 'https://cse-341-contacts-api.onrender.com/',
+  schemes: ['https'],
 };
 
 const outputFile = './swagger-output.json'; 
